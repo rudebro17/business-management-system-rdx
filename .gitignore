@@ -137,3 +137,10 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Firebase Service Account Key
+*firebase-adminsdk*.json
+businessmanr-console-rdx-firebase-adminsdk-fbsvc-76263ae8cc.json
+
+# Environment variables
+.env.local

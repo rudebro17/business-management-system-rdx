@@ -1,5 +1,7 @@
+require("dotenv").config({ path: ".env.local" });
 const express = require("express");
 const cors = require("cors");
+const db = require("./firebase");
 
 const app = express();
 
@@ -7,11 +9,17 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("API is running 🚀");
+    res.send("Firebase backend running 🚀");
 });
 
-const PORT = 5000;
+app.listen(5000, () => {
+    console.log("Server running on port 5000");
+});
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.get("/test", async (req, res) => {
+    await db.collection("test").add({
+        message: "Firebase is connected"
+    });
+
+    res.send("Data added to Firestore");
 });
