@@ -1,0 +1,27 @@
+{
+  "name": "business-management-system-rdx",
+  "version": "1.0.0",
+  "description": "a  web   application  that contains features which current business  management platforms lack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudebro17/business-management-system-rdx.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rudebro17/business-management-system-rdx/issues"
+  },
+  "homepage": "https://github.com/rudebro17/business-management-system-rdx#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "firebase": "^12.10.0"
+  }
+}
