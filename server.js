@@ -7,6 +7,7 @@ const app = express();
 
 const authRoutes = require('./backend/routes/auth');
 const logRoutes = require('./backend/routes/logs');
+const dashboardRoutes = require('./backend/routes/dashboard');
 
 app.use(cors());
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use(express.json());
 // Mount Routes
 app.use('/api', authRoutes);
 app.use('/api/logs', logRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get("/", (req, res) => {
     res.send("Firebase backend running 🚀");
