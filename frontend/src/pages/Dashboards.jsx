@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { logoutUser, getCurrentUser } from '../services/auth';
+import ActivityLog from '../components/ActivityLog';
 
 const DashboardLayout = ({ title, children, requiredRole }) => {
   const navigate = useNavigate();
@@ -44,12 +45,7 @@ const DashboardLayout = ({ title, children, requiredRole }) => {
         </div>
       </nav>
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          <h1 className="text-3xl font-extrabold text-gray-900 mb-6">{title}</h1>
-          <div className="bg-white border-2 border-dashed border-gray-200 rounded-lg h-96 p-4 shadow-sm flex items-center justify-center">
-             {children}
-          </div>
-        </div>
+         {children}
       </main>
     </div>
   );
@@ -57,7 +53,10 @@ const DashboardLayout = ({ title, children, requiredRole }) => {
 
 export const AdminDashboard = () => (
   <DashboardLayout title="Admin Dashboard" requiredRole="admin">
-    <p className="text-gray-500 text-lg">Admin specific charts, user management, and global settings will appear here.</p>
+    <div className="space-y-6">
+      <h1 className="text-3xl font-extrabold text-gray-900 mb-6">Admin Dashboard</h1>
+      <ActivityLog />
+    </div>
   </DashboardLayout>
 );
 

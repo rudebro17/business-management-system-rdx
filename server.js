@@ -6,12 +6,14 @@ const db = require("./firebase");
 const app = express();
 
 const authRoutes = require('./backend/routes/auth');
+const logRoutes = require('./backend/routes/logs');
 
 app.use(cors());
 app.use(express.json());
 
 // Mount Routes
 app.use('/api', authRoutes);
+app.use('/api/logs', logRoutes);
 
 app.get("/", (req, res) => {
     res.send("Firebase backend running 🚀");

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../../firebase'); // adjust path if needed to reach root firebase.js
+const { logActivity } = require('../utils/logger');
 
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -44,6 +45,9 @@ const loginUser = async (req, res) => {
 
         const secret = process.env.JWT_SECRET || 'fallback_secret_key';
         const token = jwt.sign(payload, secret, { expiresIn: '1d' });
+
+        // Log the successful login
+        await logActivity(userId, email, 'LOGIN', 'auth', 'User successfully logged in.');
 
         res.json({
             token,
