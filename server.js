@@ -8,6 +8,8 @@ const app = express();
 const authRoutes = require('./backend/routes/auth');
 const logRoutes = require('./backend/routes/logs');
 const dashboardRoutes = require('./backend/routes/dashboard');
+const taskRoutes = require('./backend/routes/tasks');
+const userRoutes = require('./backend/routes/users');
 
 app.use(cors());
 app.use(express.json());
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use('/api', authRoutes);
 app.use('/api/logs', logRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/users', userRoutes);
 
 app.get("/", (req, res) => {
     res.send("Firebase backend running 🚀");

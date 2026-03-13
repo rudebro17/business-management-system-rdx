@@ -1,14 +1,12 @@
 const db = require('../../firebase');
-const { getLogs } = require('./logController'); // We might just fetch logs directly from db
 
 const getDashboardStats = async (req, res) => {
     try {
         const userId = req.user.id;
         
-        // Fetch User's Tasks
-        // Assuming tasks have { assigneeId: userId, status: 'pending' | 'completed' }
+        // Fetch User's Tasks assigned to this user
         const tasksRef = db.collection('tasks');
-        const tasksSnapshot = await tasksRef.where('assigneeId', '==', userId).get();
+        const tasksSnapshot = await tasksRef.where('assignedTo', '==', userId).get();
         
         let tasksAssigned = 0;
         let tasksCompleted = 0;
