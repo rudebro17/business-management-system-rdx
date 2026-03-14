@@ -6,6 +6,10 @@ let serviceAccount;
 // In local dev, they come from a file path env var
 if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
     serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+    // Render escapes \n in private_key — restore actual newlines
+    if (serviceAccount.private_key) {
+        serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, '\n');
+    }
 } else if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
     serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_PATH);
 } else {
