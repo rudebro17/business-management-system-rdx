@@ -1,10 +1,16 @@
 const admin = require("firebase-admin");
 
-if (!process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
-    throw new Error("Missing FIREBASE_SERVICE_ACCOUNT_PATH in .env.local");
-}
+let serviceAccount;
 
-const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_PATH);
+// In production (Render), credentials come as a JSON string env var
+// In local dev, they come from a file path env var
+if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+    serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+} else if (process.env.FIREBASE_SERVICE_ACCOUNT_PATH) {
+    serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_PATH);
+} else {
+    throw new Error("Missing Firebase credentials. Set FIREBASE_SERVICE_ACCOUNT_JSON or FIREBASE_SERVICE_ACCOUNT_PATH");
+}
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)

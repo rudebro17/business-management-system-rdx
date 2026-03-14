@@ -1,17 +1,10 @@
 import axios from 'axios';
 
-// Assuming the base URL is configured globally or from env, 
-// using a relative path like /api if there's a proxy, or hardcoded for development
-const API_URL = 'http://localhost:5000/api/dashboard';
+const API_URL = `${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/dashboard`;
 
-// Helper to get auth header
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  };
+  return { headers: { Authorization: `Bearer ${token}` } };
 };
 
 export const getDashboardStats = async () => {
